@@ -1,0 +1,43 @@
+<%- include("partials/header")%>
+
+
+<div class="ui main text container">
+  <div class="ui huge header">RESTful Blog App</div>
+  <div class="ui segment">This blog apps is not a commercial website, it is only for personal research purpose only. The main purpose of this apps is to practise using RESTFUL routes, Express framework and manipulate database using mongoDB.
+  Please <strong>DO NOT DELETE/EDIT the first 3 blog posts</strong>. You could play around by creating new post from the navbar.
+  <ul>
+    <li>Click "New Post" from nav bar.</li>
+    <li>Key in the content. You could get beautiful image url from <a href="https://unsplash.com/" target="_blank">unplash.com</a>.</li>
+    <li>You could CREATE, EDIT, UPDATE, DELETE, that's what RESTful can do.</li>
+    <li>After finished playing around, please help to delete the posts you have created. Thanks!</li>
+  </ul>
+  </div>
+  <div class="ui top attached segment">
+    <div class="ui divided items">
+      <% blogs.forEach(function(blog){ %>
+        <div class="item">
+          <div class="image">
+            <img src="<%= blog.image %>">
+          </div>
+          <div class="content">
+            <a class="header" href="/blogs/<%= blog._id %>"><%=blog.title%></a>
+            <div class="meta">
+              <span><%= blog.created.toDateString() %></span>
+            </div>
+            <div class="description">
+              <p><%- blog.body.substring(0,100) %>...</p>
+            </div>
+            <div class="extra">
+              <a class="ui floated basic violet button" href="/blogs/<%= blog._id %>">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+  </div>
+</div>
+
+<%- include("partials/footer")%>
